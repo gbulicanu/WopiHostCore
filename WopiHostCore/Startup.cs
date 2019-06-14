@@ -56,8 +56,16 @@ namespace WopiHostCore
 
             // Use this if you want App_Data off your project root folder
             string baseDir = env.ContentRootPath;
+            var wopiShareMountPath = Configuration["AZUREFILES_WOPISHARE_MOUNT"];
 
-            AppDomain.CurrentDomain.SetData("DataDirectory", System.IO.Path.Combine(baseDir, "App_Data"));
+            if (string.IsNullOrWhiteSpace(wopiShareMountPath))
+            {
+                AppDomain.CurrentDomain.SetData("DataDirectory", System.IO.Path.Combine(baseDir, "App_Data"));
+            }
+            else
+            {
+                AppDomain.CurrentDomain.SetData("DataDirectory", wopiShareMountPath);
+            }
 
             if (env.IsDevelopment())
             {
