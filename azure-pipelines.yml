@@ -20,8 +20,10 @@ steps:
   inputs:
     packageType: 'sdk'
     version: '2.2.300'
-    
-- task: NuGetToolInstaller@0
+
+- task: NuGetToolInstaller@1
+  inputs:
+    versionSpec: '5.0.2'
 
 - task: NuGetCommand@2
   inputs:
